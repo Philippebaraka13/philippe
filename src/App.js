@@ -6,7 +6,7 @@ import { Form, Input, Button, Space} from 'antd';
 
 const { TextArea } = Input;
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('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');
+sgMail.setApiKey('');
 
 function App() {
 
