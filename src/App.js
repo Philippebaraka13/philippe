@@ -4,32 +4,34 @@ import React from "react";
 import { Form, Input, Button, Space} from 'antd';
 
 
+
+
 const { TextArea } = Input;
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey('');
+// const sgMail = require('@sendgrid/mail');
+// sgMail.setApiKey('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');
 
 function App() {
 
   const [form] = Form.useForm();
-  const onComplete = (fields) => {
-    const message = {
-      to:'kamokamophilippe13@gmail.com',
-      from: fields.email,
-      subject: fields.subject,
-      html: `
-      <p><strong>Name:</strong> ${fields.name}</p>
-      <p>${fields.message}</p>`
-    }
+//   const onComplete = (fields) => {
+//     const message = {
+//       to:'kamokamophilippe13@gmail.com',
+//       from: fields.email,
+//       subject: fields.subject,
+//       html: `
+//       <p><strong>Name:</strong> ${fields.name}</p>
+//       <p>${fields.message}</p>`
+//     }
 
-    sgMail
-    .send(message)
-    .then(() => {
-      form.resetFields();
-      console.log('Email sent!');
-    })
-    .catch((err) => {
-console.log('error', err);
-    })
+//     sgMail
+//     .send(message)
+//     .then(() => {
+//       form.resetFields();
+//       console.log('Email sent!');
+//     })
+//     .catch((err) => {
+// console.log('error', err);
+//     })
   }
 
   return (

@@ -1,61 +1,17 @@
-// function inviteUser(req,res) {
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const PORT = process.env.PORT || 5000;
+const bookRouter = require('./routes/book.router')
 
-//     pool.getConnection(function(err,connection){
-//         if (err) {
-//           connection.release();
-//           res.json({"code" : 100, "status" : "Error in connection database"});
-//           return;
-//         }   
-    
-//         console.log('connected as id ' + connection.threadId);
-    
-//         connection.query("select req.body.userId from user",function(err,rows){
-//             connection.release();
-//             if(!err) {
-//                 //ADD Group id to the user access the id with req.body.groupId
-//                 res.json(rows);
-//             }           
-//         });
-    
-//         connection.on('error', function(err) {      
-//               res.json({"code" : 100, "status" : "Error in connection database"});
-//               return;     
-//         });
-//       });
-//     }
-    
-//     function acceptInvitation(req,res){
-    
-//     pool.getConnection(function(err,connection){
-//         if (err) {
-//           connection.release();
-//           res.json({"code" : 100, "status" : "Error in connection database"});
-//           return;
-//         }   
-    
-//         console.log('connected as id ' + connection.threadId);
-    
-//         connection.query("select req.body.groupId from groups",function(err,rows){
-//             connection.release();
-//             if(!err) {
-//                 //ADD user id to the group access the id with req.body.userId
-//                 res.json(rows);
-//             }           
-//         });
-    
-//         connection.on('error', function(err) {      
-//               res.json({"code" : 100, "status" : "Error in connection database"});
-//               return;     
-//         });
-//       });
-//     }
-    
-    
-//     app.get("/users/invite",function(req,res){-
-//         inviteUser(req,res);
-//     });
-    
-//     app.get("/users/accept",function(req,res){-
-//         acceptInvitation(req,res);
-//     });
-    
+/** ---------- MIDDLEWARE ---------- **/
+app.use(bodyParser.json()); // needed for angular requests
+app.use(express.static('build'));
+
+/** ---------- EXPRESS ROUTES ---------- **/
+app.use('/api/book', bookRouter);
+
+/** ---------- START SERVER ---------- **/
+app.listen(PORT, ()  => {
+    console.log('Listening on port: ', PORT);
+});
